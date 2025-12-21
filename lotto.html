@@ -27,139 +27,131 @@
 <body class="bg-gray-100 text-gray-800">
 
     <!-- Main Application Container -->
-    <div id="app" class="container mx-auto p-4 md:p-6">
-        <header class="flex justify-between items-center mb-6">
-            <div class="flex items-center gap-4">
-                 <img src="https://www.njlottery.com/content/dam/portal/images/NewJerseyLottery_Logo_Full%20Color.png" alt="NJ Lottery Logo" class="h-16">
+    <div id="app" class="container mx-auto p-2 md:p-3">
+        <header class="flex justify-between items-center mb-2">
+            <div class="flex items-center gap-2">
+                 <img src="https://www.njlottery.com/content/dam/portal/images/NewJerseyLottery_Logo_Full%20Color.png" alt="NJ Lottery Logo" class="h-10">
                 <div>
-                    <h1 class="text-3xl font-bold text-slate-700">Daily Lottery Reckoning</h1>
-                    <p class="text-slate-500">Enter a full day's sales to calculate and generate a report.</p>
+                    <h1 class="text-xl font-bold text-slate-700">Daily Lottery Reckoning</h1>
+                    <p class="text-xs text-slate-500">Enter a full day's sales to calculate and generate a report.</p>
                 </div>
             </div>
             <div>
-                <button id="settingsBtn" class="bg-slate-500 hover:bg-slate-600 text-white font-bold py-2 px-4 rounded-lg shadow transition-transform transform hover:scale-105 mr-2">Settings</button>
+                <button id="settingsBtn" class="bg-slate-500 hover:bg-slate-600 text-white font-bold py-1 px-3 rounded-lg shadow text-sm transition-transform transform hover:scale-105 mr-2">Settings</button>
             </div>
         </header>
         
         <main>
              <!-- Daily Info -->
-            <div class="bg-white p-6 rounded-xl shadow-md mb-6">
-                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div class="bg-white p-3 rounded-xl shadow-md mb-2">
+                 <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
                     <div>
-                        <label for="shiftDate" class="block text-sm font-medium text-gray-700">Date</label>
-                        <input type="date" id="shiftDate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 data-entry">
+                        <label for="shiftDate" class="block text-xs font-medium text-gray-700">Date</label>
+                        <input type="date" id="shiftDate" class="mt-0.5 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm p-1 data-entry">
                     </div>
                 </div>
                 <div>
-                    <label for="dayComments" class="block text-sm font-medium text-gray-700 mb-2">Comments</label>
-                    <textarea id="dayComments" rows="3" placeholder="Add any notes or comments for this day..." class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 data-entry"></textarea>
+                    <label for="dayComments" class="block text-xs font-medium text-gray-700 mb-1">Comments</label>
+                    <textarea id="dayComments" rows="2" placeholder="Add any notes or comments for this day..." class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm p-1 data-entry"></textarea>
                 </div>
             </div>
 
             <!-- Data Entry & Summary Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-2 mb-2">
                 <!-- Shift A -->
-                <div class="lg:col-span-5 bg-white p-6 rounded-xl shadow-md">
-                     <h2 class="text-xl font-semibold mb-4 border-b pb-2">Shift A (Morning)</h2>
-                     <div class="grid grid-cols-1 gap-y-4">
+                <div class="lg:col-span-5 bg-white p-3 rounded-xl shadow-md">
+                     <h2 class="text-lg font-semibold mb-2 border-b pb-1">Shift A (Morning)</h2>
+                     <div class="grid grid-cols-1 gap-y-1.5">
                         <div>
-                             <label for="personNameA" class="block text-sm font-medium text-gray-700">Person's Name</label>
-                             <input type="text" id="personNameA" list="employeeList" placeholder="Select or type name..." class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 data-entry">
+                             <label for="personNameA" class="block text-xs font-medium text-gray-700">Person's Name</label>
+                             <input type="text" id="personNameA" list="employeeList" placeholder="Select or type name..." class="mt-0.5 block w-full rounded-md border-gray-300 shadow-sm p-1 text-sm data-entry">
                              <datalist id="employeeList"></datalist>
                         </div>
-                        <h3 class="text-lg font-semibold border-t pt-4">Machine Report</h3>
-                        <div><label for="onlineSalesA">Online Sales ($)</label><input type="number" id="onlineSalesA" class="mt-1 block w-full p-2 border rounded-md data-entry" placeholder="0.00"></div>
-                        <div><label for="onlineCashesA">Online Cashes (-$)</label><input type="number" id="onlineCashesA" class="mt-1 block w-full p-2 border rounded-md data-entry" placeholder="0.00"></div>
-                        <div><label for="onlineCancelsA">Online Cancels (-$)</label><input type="number" id="onlineCancelsA" class="mt-1 block w-full p-2 border rounded-md data-entry" placeholder="0.00"></div>
-                        <div><label for="instantCashesA">Instant Activity Cash (-$)</label><input type="number" id="instantCashesA" class="mt-1 block w-full p-2 border rounded-md data-entry" placeholder="0.00"></div>
-                         <h3 class="text-lg font-semibold border-t pt-4">Reckoning Summary</h3>
-                         <div><label>Total Scratch-Off Sales</label><p id="totalScratchSalesA" class="font-bold text-lg bg-gray-100 p-2 rounded-md">$0.00</p></div>
-                         <div><label>Expected Scratch-Off Cash</label><p id="expectedScratchCashA" class="font-bold text-lg bg-gray-100 p-2 rounded-md">$0.00</p></div>
-                         <div><label>Total Expected Cash</label><p id="totalExpectedCashA" class="font-bold text-lg bg-gray-100 p-2 rounded-md">$0.00</p></div>
-                         <div><label for="actualCashA">Actual Cash Collected ($)</label><input type="number" id="actualCashA" class="mt-1 block w-full p-2 border rounded-md data-entry" placeholder="0.00"></div>
-                         <div><label>Difference</label><p id="differenceA" class="text-2xl font-bold text-center p-2 rounded-md">---</p></div>
+                        <h3 class="text-base font-semibold border-t pt-2 mt-1">Machine Report</h3>
+                        <div><label for="onlineSalesA" class="text-xs">Online Sales ($)</label><input type="number" id="onlineSalesA" class="mt-0.5 block w-full p-1 border rounded-md text-sm data-entry" placeholder="0.00"></div>
+                        <div><label for="onlineCashesA" class="text-xs">Online Cashes (-$)</label><input type="number" id="onlineCashesA" class="mt-0.5 block w-full p-1 border rounded-md text-sm data-entry" placeholder="0.00"></div>
+                        <div><label for="onlineCancelsA" class="text-xs">Online Cancels (-$)</label><input type="number" id="onlineCancelsA" class="mt-0.5 block w-full p-1 border rounded-md text-sm data-entry" placeholder="0.00"></div>
+                        <div><label for="instantCashesA" class="text-xs">Instant Activity Cash (-$)</label><input type="number" id="instantCashesA" class="mt-0.5 block w-full p-1 border rounded-md text-sm data-entry" placeholder="0.00"></div>
+                         <h3 class="text-base font-semibold border-t pt-2 mt-1">Reckoning Summary</h3>
+                         <div><label class="text-xs">Total Scratch-Off Sales</label><p id="totalScratchSalesA" class="font-bold text-base bg-gray-100 p-1 rounded-md">$0.00</p></div>
+                         <div><label class="text-xs">Total Expected Cash</label><p id="totalExpectedCashA" class="font-bold text-base bg-gray-100 p-1 rounded-md">$0.00</p></div>
+                         <div><label for="actualCashA" class="text-xs">Actual Cash Collected ($)</label><input type="number" id="actualCashA" class="mt-0.5 block w-full p-1 border rounded-md text-sm data-entry" placeholder="0.00"></div>
+                         <div><label class="text-xs">Difference</label><p id="differenceA" class="text-xl font-bold text-center p-1 rounded-md">---</p></div>
                      </div>
                 </div>
 
                 <!-- Shift B -->
-                <div class="lg:col-span-5 bg-white p-6 rounded-xl shadow-md">
-                     <h2 class="text-xl font-semibold mb-4 border-b pb-2">Shift B (Evening)</h2>
-                      <div class="grid grid-cols-1 gap-y-4">
+                <div class="lg:col-span-5 bg-white p-3 rounded-xl shadow-md">
+                     <h2 class="text-lg font-semibold mb-2 border-b pb-1">Shift B (Evening)</h2>
+                      <div class="grid grid-cols-1 gap-y-1.5">
                         <div>
-                             <label for="personNameB" class="block text-sm font-medium text-gray-700">Person's Name</label>
-                             <input type="text" id="personNameB" list="employeeList" placeholder="Select or type name..." class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 data-entry">
+                             <label for="personNameB" class="block text-xs font-medium text-gray-700">Person's Name</label>
+                             <input type="text" id="personNameB" list="employeeList" placeholder="Select or type name..." class="mt-0.5 block w-full rounded-md border-gray-300 shadow-sm p-1 text-sm data-entry">
                         </div>
-                        <h3 class="text-lg font-semibold border-t pt-4">Machine Report</h3>
-                        <div><label for="onlineSalesB">Online Sales ($)</label><input type="number" id="onlineSalesB" class="mt-1 block w-full p-2 border rounded-md data-entry" placeholder="0.00"></div>
-                        <div><label for="onlineCashesB">Online Cashes (-$)</label><input type="number" id="onlineCashesB" class="mt-1 block w-full p-2 border rounded-md data-entry" placeholder="0.00"></div>
-                        <div><label for="onlineCancelsB">Online Cancels (-$)</label><input type="number" id="onlineCancelsB" class="mt-1 block w-full p-2 border rounded-md data-entry" placeholder="0.00"></div>
-                        <div><label for="instantCashesB">Instant Activity Cash (-$)</label><input type="number" id="instantCashesB" class="mt-1 block w-full p-2 border rounded-md data-entry" placeholder="0.00"></div>
-                         <h3 class="text-lg font-semibold border-t pt-4">Reckoning Summary</h3>
-                         <div><label>Total Scratch-Off Sales</label><p id="totalScratchSalesB" class="font-bold text-lg bg-gray-100 p-2 rounded-md">$0.00</p></div>
-                         <div><label>Expected Scratch-Off Cash</label><p id="expectedScratchCashB" class="font-bold text-lg bg-gray-100 p-2 rounded-md">$0.00</p></div>
-                         <div><label>Total Expected Cash</label><p id="totalExpectedCashB" class="font-bold text-lg bg-gray-100 p-2 rounded-md">$0.00</p></div>
-                         <div><label for="actualCashB">Actual Cash Collected ($)</label><input type="number" id="actualCashB" class="mt-1 block w-full p-2 border rounded-md data-entry" placeholder="0.00"></div>
-                         <div><label>Difference</label><p id="differenceB" class="text-2xl font-bold text-center p-2 rounded-md">---</p></div>
+                        <h3 class="text-base font-semibold border-t pt-2 mt-1">Machine Report</h3>
+                        <div><label for="onlineSalesB" class="text-xs">Online Sales ($)</label><input type="number" id="onlineSalesB" class="mt-0.5 block w-full p-1 border rounded-md text-sm data-entry" placeholder="0.00"></div>
+                        <div><label for="onlineCashesB" class="text-xs">Online Cashes (-$)</label><input type="number" id="onlineCashesB" class="mt-0.5 block w-full p-1 border rounded-md text-sm data-entry" placeholder="0.00"></div>
+                        <div><label for="onlineCancelsB" class="text-xs">Online Cancels (-$)</label><input type="number" id="onlineCancelsB" class="mt-0.5 block w-full p-1 border rounded-md text-sm data-entry" placeholder="0.00"></div>
+                        <div><label for="instantCashesB" class="text-xs">Instant Activity Cash (-$)</label><input type="number" id="instantCashesB" class="mt-0.5 block w-full p-1 border rounded-md text-sm data-entry" placeholder="0.00"></div>
+                         <h3 class="text-base font-semibold border-t pt-2 mt-1">Reckoning Summary</h3>
+                         <div><label class="text-xs">Total Scratch-Off Sales</label><p id="totalScratchSalesB" class="font-bold text-base bg-gray-100 p-1 rounded-md">$0.00</p></div>
+                         <div><label class="text-xs">Total Expected Cash</label><p id="totalExpectedCashB" class="font-bold text-base bg-gray-100 p-1 rounded-md">$0.00</p></div>
+                         <div><label for="actualCashB" class="text-xs">Actual Cash Collected ($)</label><input type="number" id="actualCashB" class="mt-0.5 block w-full p-1 border rounded-md text-sm data-entry" placeholder="0.00"></div>
+                         <div><label class="text-xs">Difference</label><p id="differenceB" class="text-xl font-bold text-center p-1 rounded-md">---</p></div>
                      </div>
                 </div>
 
                 <!-- Pending Reports -->
-                <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-md">
-                    <h2 class="text-xl font-semibold mb-4 border-b pb-2">Reports & Sessions</h2>
-                    <p class="text-xs text-gray-500 mb-2">Click a report to load it for editing.</p>
-                    <div id="pendingReportsList" class="space-y-2 mb-4 h-48 overflow-y-auto">
-                        <p class="text-gray-500 text-sm">No reports saved.</p>
+                <div class="lg:col-span-2 bg-white p-3 rounded-xl shadow-md">
+                    <h2 class="text-lg font-semibold mb-2 border-b pb-1">Reports & Sessions</h2>
+                    <p class="text-xs text-gray-500 mb-1">Click a report to load it for editing.</p>
+                    <div id="pendingReportsList" class="space-y-1 mb-2 h-32 overflow-y-auto">
+                        <p class="text-gray-500 text-xs">No reports saved.</p>
                     </div>
-                    <div class="flex flex-col space-y-2">
-                        <button id="generateConsolidatedPdfBtn" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg shadow disabled:bg-gray-400" disabled>Generate PDF</button>
-                        <button id="exportSpreadsheetBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow disabled:bg-gray-400" disabled>Export Spreadsheet</button>
-                        <button id="clearPendingBtn" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg shadow disabled:bg-gray-400" disabled>Clear List</button>
-                        <hr class="my-2">
-                        <button id="exportSessionBtn" class="w-full bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-lg shadow">Export Data</button>
-                        <label for="importSessionInput" class="w-full bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg shadow text-center cursor-pointer">Import Data</label>
+                    <div class="flex flex-col space-y-1">
+                        <button id="generateConsolidatedPdfBtn" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-1.5 px-3 rounded-lg shadow text-sm disabled:bg-gray-400" disabled>Generate PDF</button>
+                        <button id="exportSpreadsheetBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-1.5 px-3 rounded-lg shadow text-sm disabled:bg-gray-400" disabled>Export Spreadsheet</button>
+                        <button id="clearPendingBtn" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-1.5 px-3 rounded-lg shadow text-sm disabled:bg-gray-400" disabled>Clear List</button>
+                        <hr class="my-1">
+                        <button id="exportSessionBtn" class="w-full bg-gray-700 hover:bg-gray-800 text-white font-bold py-1.5 px-3 rounded-lg shadow text-sm">Export Data</button>
+                        <label for="importSessionInput" class="w-full bg-gray-500 hover:bg-gray-600 text-white font-bold py-1.5 px-3 rounded-lg shadow text-sm text-center cursor-pointer">Import Data</label>
                         <input type="file" id="importSessionInput" class="hidden" accept=".json">
                     </div>
                 </div>
             </div>
 
              <!-- Action Buttons -->
-            <div class="flex justify-center items-center gap-4 my-6 flex-wrap">
-                <button id="calculateDayBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 text-lg rounded-lg shadow-lg transition-transform transform hover:scale-105">
+            <div class="flex justify-center items-center gap-2 my-2 flex-wrap">
+                <button id="calculateDayBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 text-base rounded-lg shadow transition-transform transform hover:scale-105">
                     Calculate Day
                 </button>
-                <button id="saveDayBtn" class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-6 text-lg rounded-lg shadow-lg transition-transform transform hover:scale-105">
+                <button id="saveDayBtn" class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 text-base rounded-lg shadow transition-transform transform hover:scale-105">
                     Save Day & Start Next
                 </button>
             </div>
 
-            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md mb-6 text-center">
-                <h3 class="text-xl font-semibold mb-2">Daily Cash Difference</h3>
-                <p id="dailyDifferenceValue" class="text-2xl font-bold text-center p-2 rounded-md bg-gray-100">---</p>
-            </div>
-
-
             <!-- Scratch-Off Tickets Table -->
-            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md">
-                <h2 class="text-xl font-semibold mb-4 border-b pb-2">Scratch-Off Tickets</h2>
+            <div class="bg-white p-2 rounded-xl shadow-md">
+                <h2 class="text-lg font-semibold mb-2 border-b pb-1">Scratch-Off Tickets</h2>
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
-                                <th rowspan="2" class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider align-bottom">#</th>
-                                <th rowspan="2" class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider align-bottom">Ticket Name</th>
-                                <th rowspan="2" class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider align-bottom">Price</th>
-                                <th rowspan="2" class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider align-bottom">Prev. # (P)</th>
-                                <th colspan="3" class="px-2 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-b border-l">Shift A</th>
-                                <th colspan="3" class="px-2 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-b border-l">Shift B</th>
-                                <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider align-bottom" style="min-width: 180px;">Actions</th>
+                                <th rowspan="2" class="px-1 py-1 text-left text-xs font-medium text-gray-500 uppercase tracking-wider align-bottom">#</th>
+                                <th rowspan="2" class="px-1 py-1 text-left text-xs font-medium text-gray-500 uppercase tracking-wider align-bottom">Ticket Name</th>
+                                <th rowspan="2" class="px-1 py-1 text-left text-xs font-medium text-gray-500 uppercase tracking-wider align-bottom">Price</th>
+                                <th rowspan="2" class="px-1 py-1 text-left text-xs font-medium text-gray-500 uppercase tracking-wider align-bottom">Prev. # (P)</th>
+                                <th colspan="3" class="px-1 py-1 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-b border-l">Shift A</th>
+                                <th colspan="3" class="px-1 py-1 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-b border-l">Shift B</th>
+                                <th rowspan="2" class="px-1 py-1 text-center text-xs font-medium text-gray-500 uppercase tracking-wider align-bottom" style="min-width: 180px;">Actions</th>
                             </tr>
                             <tr>
-                                <th class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-l">End # (A)</th>
-                                <th class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sold (C)</th>
-                                <th class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total (T)</th>
-                                <th class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-l">End # (B)</th>
-                                <th class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sold (C)</th>
-                                <th class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total (T)</th>
+                                <th class="px-1 py-1 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-l">End # (A)</th>
+                                <th class="px-1 py-1 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sold (C)</th>
+                                <th class="px-1 py-1 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total (T)</th>
+                                <th class="px-1 py-1 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-l">End # (B)</th>
+                                <th class="px-1 py-1 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sold (C)</th>
+                                <th class="px-1 py-1 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total (T)</th>
                             </tr>
                         </thead>
                         <tbody id="ticketsTableBody" class="bg-white divide-y divide-gray-200"></tbody>
@@ -167,7 +159,7 @@
                 </div>
             </div>
         </main>
-        <footer class="text-center text-sm text-gray-500 mt-8">
+        <footer class="text-center text-xs text-gray-500 mt-2">
             <p>Developed by <a href="https://github.com/Virtual-Viking" target="_blank" class="text-blue-600 hover:underline">Virtual-Viking</a></p>
         </footer>
     </div>
@@ -210,8 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Shift A
         personNameA: document.getElementById('personNameA'), onlineSalesA: document.getElementById('onlineSalesA'), onlineCashesA: document.getElementById('onlineCashesA'), onlineCancelsA: document.getElementById('onlineCancelsA'), instantCashesA: document.getElementById('instantCashesA'), totalScratchSalesA: document.getElementById('totalScratchSalesA'), expectedScratchCashA: document.getElementById('expectedScratchCashA'), totalExpectedCashA: document.getElementById('totalExpectedCashA'), actualCashA: document.getElementById('actualCashA'), differenceA: document.getElementById('differenceA'),
         // Shift B
-        personNameB: document.getElementById('personNameB'), onlineSalesB: document.getElementById('onlineSalesB'), onlineCashesB: document.getElementById('onlineCashesB'), onlineCancelsB: document.getElementById('onlineCancelsB'), instantCashesB: document.getElementById('instantCashesB'), totalScratchSalesB: document.getElementById('totalScratchSalesB'), expectedScratchCashB: document.getElementById('expectedScratchCashB'), totalExpectedCashB: document.getElementById('totalExpectedCashB'), actualCashB: document.getElementById('actualCashB'), differenceB: document.getElementById('differenceB'),
-        dailyDifferenceValue: document.getElementById('dailyDifferenceValue')
+        personNameB: document.getElementById('personNameB'), onlineSalesB: document.getElementById('onlineSalesB'), onlineCashesB: document.getElementById('onlineCashesB'), onlineCancelsB: document.getElementById('onlineCancelsB'), instantCashesB: document.getElementById('instantCashesB'), totalScratchSalesB: document.getElementById('totalScratchSalesB'), expectedScratchCashB: document.getElementById('expectedScratchCashB'), totalExpectedCashB: document.getElementById('totalExpectedCashB'), actualCashB: document.getElementById('actualCashB'), differenceB: document.getElementById('differenceB')
     };
     
     dom.shiftDateInput.value = new Date().toISOString().split('T')[0];
@@ -266,11 +257,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const state = ticketState.find(s => s.id === t.id);
             if (!state) return;
             const isPrevNil = state.lastNumber === -1;
-            const prevInputHTML = `<input type="number" class="w-24 p-1 border rounded prev-number-input data-entry ${isPrevNil ? 'nil-input' : ''}" value="${isPrevNil ? '' : state.lastNumber}" ${isPrevNil ? 'placeholder="SOLD"' : ''}>`;
-            dom.ticketsTableBody.insertAdjacentHTML('beforeend', `<tr id="row-${t.id}" class="ticket-row"><td class="px-2 py-3">${i + 1}</td><td class="px-2 py-3 font-semibold">${t.name}</td><td class="px-2 py-3">$${t.price.toFixed(2)}</td><td class="px-2 py-3">${prevInputHTML}</td><td class="px-2 py-3 border-l"><input type="number" class="w-24 p-1 border rounded shift-a-input data-entry" placeholder="${isPrevNil ? 'SOLD' : state.lastNumber}"></td><td class="px-2 py-3 sold-a-count">0</td><td class="px-2 py-3 total-a-amount font-bold">$0.00</td><td class="px-2 py-3 border-l"><input type="number" class="w-24 p-1 border rounded shift-b-input data-entry" placeholder=""></td><td class="px-2 py-3 sold-b-count">0</td><td class="px-2 py-3 total-b-amount font-bold">$0.00</td><td class="px-2 py-3 space-x-1 whitespace-nowrap"><button class="nil-p-btn bg-yellow-500 text-white px-2 py-1 text-xs rounded hover:bg-yellow-600">NIL P</button><button class="nil-btn bg-red-500 text-white px-2 py-1 text-xs rounded hover:bg-red-600" data-shift="A">NIL A</button><button class="nil-btn bg-red-500 text-white px-2 py-1 text-xs rounded hover:bg-red-600" data-shift="B">NIL B</button><button class="reload-btn bg-gray-500 text-white px-2 py-1 text-xs rounded hover:bg-gray-600">Reload</button></td></tr>`);
+            const prevInputHTML = `<input type="number" class="w-20 p-0.5 border rounded text-sm prev-number-input data-entry ${isPrevNil ? 'nil-input' : ''}" value="${isPrevNil ? '' : state.lastNumber}" ${isPrevNil ? 'placeholder="SOLD"' : ''}>`;
+            dom.ticketsTableBody.insertAdjacentHTML('beforeend', `<tr id="row-${t.id}" class="ticket-row"><td class="px-1 py-1">${i + 1}</td><td class="px-1 py-1 font-semibold text-sm">${t.name}</td><td class="px-1 py-1 text-sm">$${t.price.toFixed(2)}</td><td class="px-1 py-1">${prevInputHTML}</td><td class="px-1 py-1 border-l"><input type="number" class="w-20 p-0.5 border rounded text-sm shift-a-input data-entry" placeholder="${isPrevNil ? 'SOLD' : state.lastNumber}"></td><td class="px-1 py-1 sold-a-count text-sm">0</td><td class="px-1 py-1 total-a-amount font-bold text-sm">$0.00</td><td class="px-1 py-1 border-l"><input type="number" class="w-20 p-0.5 border rounded text-sm shift-b-input data-entry" placeholder=""></td><td class="px-1 py-1 sold-b-count text-sm">0</td><td class="px-1 py-1 total-b-amount font-bold text-sm">$0.00</td><td class="px-1 py-1 space-x-0.5 whitespace-nowrap"><button class="nil-p-btn bg-yellow-500 text-white px-1.5 py-0.5 text-xs rounded hover:bg-yellow-600">NIL P</button><button class="nil-btn bg-red-500 text-white px-1.5 py-0.5 text-xs rounded hover:bg-red-600" data-shift="A">NIL A</button><button class="nil-btn bg-red-500 text-white px-1.5 py-0.5 text-xs rounded hover:bg-red-600" data-shift="B">NIL B</button><button class="reload-btn bg-gray-500 text-white px-1.5 py-0.5 text-xs rounded hover:bg-gray-600">Reload</button></td></tr>`);
         });
         // Add totals row
-        dom.ticketsTableBody.insertAdjacentHTML('beforeend', `<tr id="totals-row" class="bg-gray-100 font-bold border-t-2 border-gray-400"><td class="px-2 py-3" colspan="4">TOTAL</td><td class="px-2 py-3 border-l"></td><td class="px-2 py-3" id="total-sold-a">0</td><td class="px-2 py-3" id="total-amount-a">$0.00</td><td class="px-2 py-3 border-l"></td><td class="px-2 py-3" id="total-sold-b">0</td><td class="px-2 py-3" id="total-amount-b">$0.00</td><td class="px-2 py-3"></td></tr>`);
+        dom.ticketsTableBody.insertAdjacentHTML('beforeend', `<tr id="totals-row" class="bg-gray-100 font-bold border-t-2 border-gray-400"><td class="px-1 py-1" colspan="4">TOTAL</td><td class="px-1 py-1 border-l"></td><td class="px-1 py-1 text-sm" id="total-sold-a">0</td><td class="px-1 py-1 text-sm" id="total-amount-a">$0.00</td><td class="px-1 py-1 border-l"></td><td class="px-1 py-1 text-sm" id="total-sold-b">0</td><td class="px-1 py-1 text-sm" id="total-amount-b">$0.00</td><td class="px-1 py-1"></td></tr>`);
     }
     
     function updateEmployeeUI() {
@@ -630,7 +621,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const diffA = calculateSummary('A', shiftA.totalScratchSales);
         const diffB = calculateSummary('B', shiftB.totalScratchSales, shiftA.totalScratchSales);
-        updateDailyDifference(diffA, diffB);
         
         if (isFinal) {
             shiftA.date = shiftB.date = dom.shiftDateInput.value;
@@ -661,7 +651,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function calculateSummary(shift, totalScratchSales, additionalScratchSales = 0) {
         const s = shift.toUpperCase();
         dom[`totalScratchSales${s}`].textContent = `$${totalScratchSales.toFixed(2)}`;
-        dom[`expectedScratchCash${s}`].textContent = `$${totalScratchSales.toFixed(2)}`;
         const onlineSales = parseFloat(dom[`onlineSales${s}`].value) || 0;
         const onlineCashes = parseFloat(dom[`onlineCashes${s}`].value) || 0;
         const onlineCancels = parseFloat(dom[`onlineCancels${s}`]?.value) || 0;
@@ -674,28 +663,47 @@ document.addEventListener('DOMContentLoaded', function() {
         const diffEl = dom[`difference${s}`];
         if (actualValue === '' || isNaN(actual)) {
             diffEl.textContent = '---';
-            diffEl.className = 'text-2xl font-bold text-center p-2 rounded-md';
+            diffEl.className = 'text-xl font-bold text-center p-1 rounded-md';
             return null;
         }
-        const diff = expected - actual;
+        
+        let diff;
+        if (shift === 'B') {
+            // Shift B: Shift B Actual - Shift B Online Sales + Shift B Online Cashes + Shift B Online Cancels + Shift B Instant Cashes - Shift A Total - Shift B Total
+            // Get totals from bottom row of tickets table
+            const shiftATotalEl = document.getElementById('total-amount-a');
+            const shiftBTotalEl = document.getElementById('total-amount-b');
+            const shiftATotal = shiftATotalEl ? parseFloat(shiftATotalEl.textContent.replace('$', '').replace(',', '')) || 0 : 0;
+            const shiftBTotal = shiftBTotalEl ? parseFloat(shiftBTotalEl.textContent.replace('$', '').replace(',', '')) || 0 : 0;
+            // Calculate Shift B's difference using only Shift B's actual cash and Shift B's online values
+            diff = actual - onlineSales + onlineCashes + onlineCancels + instantCashes - shiftATotal - shiftBTotal;
+        } else {
+            // Shift A: Actual - Online Sales + Online Cashes + Online Cancels + Instant Cashes - Shift A Total
+            // Get total from bottom row of tickets table
+            const shiftATotalEl = document.getElementById('total-amount-a');
+            const shiftATotal = shiftATotalEl ? parseFloat(shiftATotalEl.textContent.replace('$', '').replace(',', '')) || 0 : 0;
+            diff = actual - onlineSales + onlineCashes + onlineCancels + instantCashes - shiftATotal;
+        }
+        
         diffEl.textContent = `$${diff.toFixed(2)}`;
-        if (diff > 0) diffEl.className = 'text-2xl font-bold text-center p-2 rounded-md bg-red-100 text-red-700';
-        else if (diff < 0) diffEl.className = 'text-2xl font-bold text-center p-2 rounded-md bg-green-100 text-green-700';
-        else diffEl.className = 'text-2xl font-bold text-center p-2 rounded-md bg-blue-100 text-blue-700';
+        if (diff > 0) diffEl.className = 'text-xl font-bold text-center p-1 rounded-md bg-green-100 text-green-700';
+        else if (diff < 0) diffEl.className = 'text-xl font-bold text-center p-1 rounded-md bg-red-100 text-red-700';
+        else diffEl.className = 'text-xl font-bold text-center p-1 rounded-md bg-blue-100 text-blue-700';
         return diff;
     }
     
     function updateDailyDifference(diffA, diffB) {
+        // Daily difference = Shift A difference + Shift B difference (cumulative total)
         if (diffA === null || diffB === null) {
             dom.dailyDifferenceValue.textContent = '---';
-            dom.dailyDifferenceValue.className = 'text-2xl font-bold text-center p-2 rounded-md bg-gray-100';
+            dom.dailyDifferenceValue.className = 'text-xl font-bold text-center p-1 rounded-md bg-gray-100';
             return;
         }
         const totalDiff = diffA + diffB;
         dom.dailyDifferenceValue.textContent = `$${totalDiff.toFixed(2)}`;
-        if (totalDiff > 0) dom.dailyDifferenceValue.className = 'text-2xl font-bold text-center p-2 rounded-md bg-red-100 text-red-700';
-        else if (totalDiff < 0) dom.dailyDifferenceValue.className = 'text-2xl font-bold text-center p-2 rounded-md bg-green-100 text-green-700';
-        else dom.dailyDifferenceValue.className = 'text-2xl font-bold text-center p-2 rounded-md bg-blue-100 text-blue-700';
+        if (totalDiff > 0) dom.dailyDifferenceValue.className = 'text-xl font-bold text-center p-1 rounded-md bg-green-100 text-green-700';
+        else if (totalDiff < 0) dom.dailyDifferenceValue.className = 'text-xl font-bold text-center p-1 rounded-md bg-red-100 text-red-700';
+        else dom.dailyDifferenceValue.className = 'text-xl font-bold text-center p-1 rounded-md bg-blue-100 text-blue-700';
     }
     
     function resetDayInputs(startNextDay) {
@@ -703,12 +711,10 @@ document.addEventListener('DOMContentLoaded', function() {
         dom.dayComments.value = '';
         ['A', 'B'].forEach(s => {
             ['personName','onlineSales','onlineCashes','onlineCancels','instantCashes','actualCash'].forEach(id => dom[`${id}${s}`].value = '');
-            ['totalScratchSales','expectedScratchCash','totalExpectedCash'].forEach(id => dom[`${id}${s}`].textContent = '$0.00');
+            ['totalScratchSales','totalExpectedCash'].forEach(id => dom[`${id}${s}`].textContent = '$0.00');
             dom[`difference${s}`].textContent = '---';
-            dom[`difference${s}`].className = 'text-2xl font-bold text-center p-2 rounded-md';
+            dom[`difference${s}`].className = 'text-xl font-bold text-center p-1 rounded-md';
         });
-        dom.dailyDifferenceValue.textContent = '---';
-        dom.dailyDifferenceValue.className = 'text-2xl font-bold text-center p-2 rounded-md bg-gray-100';
         document.querySelectorAll('.shift-a-input, .shift-b-input').forEach(i => { i.value = ''; i.classList.remove('nil-input'); });
         document.querySelectorAll('.sold-a-count, .sold-b-count').forEach(el => el.textContent = '0');
         document.querySelectorAll('.total-a-amount, .total-b-amount').forEach(el => el.textContent = '$0.00');
@@ -846,7 +852,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 doc.text(`NOTE: Shift A numbers are missing`, leftColX, summaryStartY + lineSpacing);
                 doc.setTextColor(0, 0, 0);
             } else {
-                doc.text(`Expected Scratch-Off Cash: $${day.shiftA.totalScratchSales.toFixed(2)}`, leftColX, summaryStartY + lineSpacing);
                 doc.setFontSize(12).setFont(undefined, 'bold');
                 doc.text(`Difference: ${day.shiftA.difference}`, rightColX, summaryStartY + lineSpacing);
             }
@@ -862,7 +867,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 doc.text(`NOTE: Shift B numbers are missing`, leftColX, shiftBStartY + lineSpacing);
                 doc.setTextColor(0, 0, 0);
             } else {
-                doc.text(`Expected Scratch-Off Cash: $${day.shiftB.totalScratchSales.toFixed(2)}`, leftColX, shiftBStartY + lineSpacing);
                 doc.setFontSize(12).setFont(undefined, 'bold');
                 doc.text(`Difference: ${day.shiftB.difference}`, rightColX, shiftBStartY + lineSpacing);
             }
@@ -988,16 +992,6 @@ document.addEventListener('DOMContentLoaded', function() {
             totalScratchSalesRow.push(total || '', total || '');
         });
         rows.push(totalScratchSalesRow.map(escapeCSV).join(','));
-        
-        // EXPECTED SCRATCH-OFF CASH row (per shift)
-        const expectedScratchCashRow = ['', '', 'EXPECTED SCRATCH-OFF CASH'];
-        sortedReports.forEach(report => {
-            expectedScratchCashRow.push(
-                report.shiftA.isMissing ? 'MISSING' : (report.shiftA.totalScratchSales || ''),
-                report.shiftB.isMissing ? 'MISSING' : (report.shiftB.totalScratchSales || '')
-            );
-        });
-        rows.push(expectedScratchCashRow.map(escapeCSV).join(','));
         
         // TOTAL EXPECTED CASH row (per shift)
         const totalExpectedCashRow = ['', '', 'TOTAL EXPECTED CASH'];
