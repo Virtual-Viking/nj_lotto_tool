@@ -853,7 +853,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 doc.setTextColor(0, 0, 0);
             } else {
                 doc.setFontSize(12).setFont(undefined, 'bold');
-                doc.text(`Difference: ${day.shiftA.difference}`, rightColX, summaryStartY + lineSpacing);
+                // Recalculate difference using same formula as app: Actual - Online Sales + Online Cashes + Online Cancels + Instant Cashes - Shift A Total
+                const shiftATotal = day.shiftA.totalScratchSales || 0;
+                const diffValueA = day.shiftA.actualCash - day.shiftA.onlineSales + day.shiftA.onlineCashes + day.shiftA.onlineCancels + day.shiftA.instantCashes - shiftATotal;
+                const diffTextA = `$${diffValueA.toFixed(2)}`;
+                // Set color: Green for positive (extra cash), Red for negative (low cash), Blue for zero
+                if (diffValueA > 0) {
+                    doc.setTextColor(0, 128, 0); // Green for positive (extra cash)
+                } else if (diffValueA < 0) {
+                    doc.setTextColor(200, 0, 0); // Red for negative (low cash)
+                } else {
+                    doc.setTextColor(0, 0, 200); // Blue for zero
+                }
+                doc.text(`Difference: ${diffTextA}`, rightColX, summaryStartY + lineSpacing);
+                doc.setTextColor(0, 0, 0); // Reset to black
             }
 
             // Shift B
@@ -868,7 +881,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 doc.setTextColor(0, 0, 0);
             } else {
                 doc.setFontSize(12).setFont(undefined, 'bold');
-                doc.text(`Difference: ${day.shiftB.difference}`, rightColX, shiftBStartY + lineSpacing);
+                // Recalculate difference using same formula as app: Shift B Actual - Shift B Online Sales + Shift B Online Cashes + Shift B Online Cancels + Shift B Instant Cashes - Shift A Total - Shift B Total
+                const shiftATotal = day.shiftA.totalScratchSales || 0;
+                const shiftBTotal = day.shiftB.totalScratchSales || 0;
+                const diffValueB = day.shiftB.actualCash - day.shiftB.onlineSales + day.shiftB.onlineCashes + day.shiftB.onlineCancels + day.shiftB.instantCashes - shiftATotal - shiftBTotal;
+                const diffTextB = `$${diffValueB.toFixed(2)}`;
+                // Set color: Green for positive (extra cash), Red for negative (low cash), Blue for zero
+                if (diffValueB > 0) {
+                    doc.setTextColor(0, 128, 0); // Green for positive (extra cash)
+                } else if (diffValueB < 0) {
+                    doc.setTextColor(200, 0, 0); // Red for negative (low cash)
+                } else {
+                    doc.setTextColor(0, 0, 200); // Blue for zero
+                }
+                doc.text(`Difference: ${diffTextB}`, rightColX, shiftBStartY + lineSpacing);
+                doc.setTextColor(0, 0, 0); // Reset to black
             }
             
             // Comments section
