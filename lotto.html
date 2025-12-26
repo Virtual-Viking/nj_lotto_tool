@@ -15,7 +15,7 @@
         .modal-content { background-color: #fefefe; margin: 5% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 900px; border-radius: 0.5rem; animation-name: slideIn; animation-duration: 0.4s; }
         @keyframes slideIn { from {bottom: -300px; opacity: 0} to {bottom: 0; opacity: 1} }
         @keyframes fadeIn { from {opacity: 0} to {opacity: 1} }
-        .nil-input { background-color: #fecaca; color: #b91c1c; font-weight: bold; }
+        .nil-input { border: 2px solid #dc2626 !important; background-color: white; color: #000; }
         .report-item { display: flex; justify-content: space-between; align-items: center; border: 1px solid #e5e7eb; border-radius: 0.375rem; margin-bottom: 0.5rem; }
         .report-item button { all: unset; cursor: pointer; padding: 8px; flex-grow: 1; text-align: left; }
         .report-item button:hover { background-color: #f3f4f6; }
@@ -143,7 +143,7 @@
                                 <th rowspan="2" class="px-1 py-1 text-left text-xs font-medium text-gray-500 uppercase tracking-wider align-bottom">Prev. # (P)</th>
                                 <th colspan="3" class="px-1 py-1 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-b border-l">Shift A</th>
                                 <th colspan="3" class="px-1 py-1 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-b border-l">Shift B</th>
-                                <th rowspan="2" class="px-1 py-1 text-center text-xs font-medium text-gray-500 uppercase tracking-wider align-bottom" style="min-width: 180px;">Actions</th>
+                                <th rowspan="2" class="px-1 py-1 text-center text-xs font-medium text-gray-500 uppercase tracking-wider align-bottom" style="min-width: 100px;">Actions</th>
                             </tr>
                             <tr>
                                 <th class="px-1 py-1 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-l">End # (A)</th>
@@ -257,8 +257,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const state = ticketState.find(s => s.id === t.id);
             if (!state) return;
             const isPrevNil = state.lastNumber === -1;
-            const prevInputHTML = `<input type="number" class="w-20 p-0.5 border rounded text-sm prev-number-input data-entry ${isPrevNil ? 'nil-input' : ''}" value="${isPrevNil ? '' : state.lastNumber}" ${isPrevNil ? 'placeholder="SOLD"' : ''}>`;
-            dom.ticketsTableBody.insertAdjacentHTML('beforeend', `<tr id="row-${t.id}" class="ticket-row"><td class="px-1 py-1">${i + 1}</td><td class="px-1 py-1 font-semibold text-sm">${t.name}</td><td class="px-1 py-1 text-sm">$${t.price.toFixed(2)}</td><td class="px-1 py-1">${prevInputHTML}</td><td class="px-1 py-1 border-l"><input type="number" class="w-20 p-0.5 border rounded text-sm shift-a-input data-entry" placeholder="${isPrevNil ? 'SOLD' : state.lastNumber}"></td><td class="px-1 py-1 sold-a-count text-sm">0</td><td class="px-1 py-1 total-a-amount font-bold text-sm">$0.00</td><td class="px-1 py-1 border-l"><input type="number" class="w-20 p-0.5 border rounded text-sm shift-b-input data-entry" placeholder=""></td><td class="px-1 py-1 sold-b-count text-sm">0</td><td class="px-1 py-1 total-b-amount font-bold text-sm">$0.00</td><td class="px-1 py-1 space-x-0.5 whitespace-nowrap"><button class="nil-p-btn bg-yellow-500 text-white px-1.5 py-0.5 text-xs rounded hover:bg-yellow-600">NIL P</button><button class="nil-btn bg-red-500 text-white px-1.5 py-0.5 text-xs rounded hover:bg-red-600" data-shift="A">NIL A</button><button class="nil-btn bg-red-500 text-white px-1.5 py-0.5 text-xs rounded hover:bg-red-600" data-shift="B">NIL B</button><button class="reload-btn bg-gray-500 text-white px-1.5 py-0.5 text-xs rounded hover:bg-gray-600">Reload</button></td></tr>`);
+            const prevInputHTML = `<input type="number" class="w-20 p-0.5 border rounded text-sm prev-number-input data-entry ${isPrevNil ? 'nil-input' : ''}" value="${isPrevNil ? '-1' : state.lastNumber}" placeholder="">`;
+            dom.ticketsTableBody.insertAdjacentHTML('beforeend', `<tr id="row-${t.id}" class="ticket-row"><td class="px-1 py-1">${i + 1}</td><td class="px-1 py-1 font-semibold text-sm">${t.name}</td><td class="px-1 py-1 text-sm">$${t.price.toFixed(2)}</td><td class="px-1 py-1">${prevInputHTML}</td><td class="px-1 py-1 border-l"><input type="number" class="w-20 p-0.5 border rounded text-sm shift-a-input data-entry" placeholder="${isPrevNil ? 'SOLD' : state.lastNumber}"></td><td class="px-1 py-1 sold-a-count text-sm">0</td><td class="px-1 py-1 total-a-amount font-bold text-sm">$0.00</td><td class="px-1 py-1 border-l"><input type="number" class="w-20 p-0.5 border rounded text-sm shift-b-input data-entry" placeholder=""></td><td class="px-1 py-1 sold-b-count text-sm">0</td><td class="px-1 py-1 total-b-amount font-bold text-sm">$0.00</td><td class="px-1 py-1 space-x-0.5 whitespace-nowrap"><button class="reload-btn bg-gray-500 text-white px-1.5 py-0.5 text-xs rounded hover:bg-gray-600">Reload</button></td></tr>`);
         });
         // Add totals row
         dom.ticketsTableBody.insertAdjacentHTML('beforeend', `<tr id="totals-row" class="bg-gray-100 font-bold border-t-2 border-gray-400"><td class="px-1 py-1" colspan="4">TOTAL</td><td class="px-1 py-1 border-l"></td><td class="px-1 py-1 text-sm" id="total-sold-a">0</td><td class="px-1 py-1 text-sm" id="total-amount-a">$0.00</td><td class="px-1 py-1 border-l"></td><td class="px-1 py-1 text-sm" id="total-sold-b">0</td><td class="px-1 py-1 text-sm" id="total-amount-b">$0.00</td><td class="px-1 py-1"></td></tr>`);
@@ -415,8 +415,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const shiftAInput = row.querySelector('.shift-a-input');
             const shiftBInput = row.querySelector('.shift-b-input');
 
-            prevInput.value = t.prevNum === -1 ? '' : t.prevNum;
-            prevInput.placeholder = t.prevNum === -1 ? 'SOLD' : '';
+            prevInput.value = t.prevNum === -1 ? '-1' : t.prevNum;
+            prevInput.placeholder = '';
             if(t.prevNum === -1) prevInput.classList.add('nil-input'); else prevInput.classList.remove('nil-input');
 
             // Handle Shift A - check if missing
@@ -425,8 +425,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 shiftAInput.placeholder = '';
                 shiftAInput.classList.remove('nil-input');
             } else {
-                shiftAInput.value = t.currentNum === -1 ? '' : t.currentNum;
-                shiftAInput.placeholder = t.currentNum === -1 ? 'SOLD' : '';
+                shiftAInput.value = t.currentNum === -1 ? '-1' : t.currentNum;
+                shiftAInput.placeholder = '';
                 if(t.currentNum === -1) shiftAInput.classList.add('nil-input'); else shiftAInput.classList.remove('nil-input');
             }
             
@@ -437,8 +437,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 shiftBInput.placeholder = '';
                 shiftBInput.classList.remove('nil-input');
             } else if (tB) {
-                shiftBInput.value = tB.currentNum === -1 ? '' : tB.currentNum;
-                shiftBInput.placeholder = tB.currentNum === -1 ? 'SOLD' : '';
+                shiftBInput.value = tB.currentNum === -1 ? '-1' : tB.currentNum;
+                shiftBInput.placeholder = '';
                 if(tB.currentNum === -1) shiftBInput.classList.add('nil-input'); else shiftBInput.classList.remove('nil-input');
             }
         });
@@ -452,14 +452,27 @@ document.addEventListener('DOMContentLoaded', function() {
     dom.exportSpreadsheetBtn.onclick = () => exportSpreadsheet();
     dom.clearPendingBtn.onclick = () => { if(confirm("Clear all pending reports?")){ dailyReports = []; saveReports(); updatePendingReportsUI(); } };
 
+    // Function to handle -1 input styling
+    function handleInputChange(input) {
+        const value = input.value.trim();
+        if (value === '-1' || value === '-') {
+            input.classList.add('nil-input');
+        } else {
+            input.classList.remove('nil-input');
+        }
+    }
+
+    // Add event listeners for input changes to detect -1
+    dom.ticketsTableBody.addEventListener('input', function(e) {
+        if (e.target.matches('.prev-number-input, .shift-a-input, .shift-b-input')) {
+            handleInputChange(e.target);
+        }
+    });
+
     dom.ticketsTableBody.addEventListener('click', function(e) {
         const row = e.target.closest('.ticket-row'); if (!row) return;
         const id = parseInt(row.id.split('-')[1]);
-        if (e.target.classList.contains('nil-btn')) {
-            const shift = e.target.dataset.shift;
-            const input = row.querySelector(shift === 'A' ? '.shift-a-input' : '.shift-b-input');
-            input.value = -1; input.placeholder = 'SOLD'; input.classList.add('nil-input');
-        } else if (e.target.classList.contains('reload-btn')) {
+        if (e.target.classList.contains('reload-btn')) {
             const config = ticketConfig.find(t => t.id === id);
             const prevInput = row.querySelector('.prev-number-input');
             const shiftAInput = row.querySelector('.shift-a-input');
@@ -477,13 +490,6 @@ document.addEventListener('DOMContentLoaded', function() {
             shiftBInput.value = '';
             shiftBInput.classList.remove('nil-input');
             shiftBInput.placeholder = '';
-
-        } else if (e.target.classList.contains('nil-p-btn')) {
-            const prevInput = row.querySelector('.prev-number-input');
-            prevInput.value = -1;
-            prevInput.placeholder = 'SOLD';
-            prevInput.classList.add('nil-input');
-            row.querySelector('.shift-a-input').placeholder = 'SOLD';
         }
     });
     
@@ -524,13 +530,13 @@ document.addEventListener('DOMContentLoaded', function() {
     function performCalculation(isFinal = false) {
         let shiftA = { ticketDetails: [], totalScratchSales: 0 }, shiftB = { ticketDetails: [], totalScratchSales: 0 };
         
-        // Check if entire shifts are missing
+        // Check if entire shifts are missing (empty inputs, not -1)
         let shiftAMissing = true, shiftBMissing = true;
         document.querySelectorAll('.ticket-row').forEach(row => {
-            const numAInput = row.querySelector('.shift-a-input').value;
-            const numBInput = row.querySelector('.shift-b-input').value;
-            if (numAInput !== '') shiftAMissing = false;
-            if (numBInput !== '') shiftBMissing = false;
+            const numAInput = row.querySelector('.shift-a-input').value.trim();
+            const numBInput = row.querySelector('.shift-b-input').value.trim();
+            if (numAInput !== '' && numAInput !== '-1') shiftAMissing = false;
+            if (numBInput !== '' && numBInput !== '-1') shiftBMissing = false;
         });
 
         document.querySelectorAll('.ticket-row').forEach(row => {
@@ -551,13 +557,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 shiftA.ticketDetails.push({ id, name: config.name, price: config.price, bookSize: config.bookSize, prevNum, currentNum: null, soldCount: 0, totalAmount: 0, isMissing: true });
             } else {
                 // Shift A has numbers - calculate normally
-                let numA = numAInput === '' ? prevNum : parseInt(numAInput);
+                // If empty, use prevNum; if -1 entered, keep as -1; otherwise parse
+                let numA;
+                if (numAInput === '') {
+                    numA = prevNum; // Empty means no change, use previous number
+                } else if (numAInput === '-1') {
+                    numA = -1; // Explicitly entered -1 means sold out
+                } else {
+                    numA = parseInt(numAInput);
+                    if (isNaN(numA)) numA = prevNum;
+                }
                 const soldA = calculateSoldCount(prevNum, numA, config.bookSize);
                 const totalA = soldA * config.price;
                 shiftA.totalScratchSales += totalA;
                 row.querySelector('.sold-a-count').textContent = soldA;
                 row.querySelector('.total-a-amount').textContent = `$${totalA.toFixed(2)}`;
-                shiftA.ticketDetails.push({ id, name: config.name, price: config.price, bookSize: config.bookSize, prevNum, currentNum: numA, soldCount: soldA, totalAmount: totalA });
+                // Save -1 for empty inputs when saving, but use prevNum for calculation
+                const savedNumA = numAInput === '' ? -1 : numA;
+                shiftA.ticketDetails.push({ id, name: config.name, price: config.price, bookSize: config.bookSize, prevNum, currentNum: savedNumA, soldCount: soldA, totalAmount: totalA });
             }
             
             // Handle Shift B
@@ -570,7 +587,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 shiftB.ticketDetails.push({ id, name: config.name, price: config.price, bookSize: config.bookSize, prevNum: prevNumForB, currentNum: null, soldCount: 0, totalAmount: 0, isMissing: true });
             } else {
                 // Shift B has numbers - calculate from appropriate starting point
-                let numB = parseInt(numBInput);
+                // First determine startNumForB (where Shift B starts from)
                 let startNumForB;
                 if (shiftAMissing) {
                     // If Shift A is missing, calculate Shift B from prevNum
@@ -578,16 +595,39 @@ document.addEventListener('DOMContentLoaded', function() {
                     row.querySelector('.shift-b-input').placeholder = prevNum === -1 ? 'SOLD' : prevNum;
                 } else {
                     // Normal case: calculate from Shift A's number
-                    let numA = numAInput === '' ? prevNum : parseInt(numAInput);
+                    let numA;
+                    if (numAInput === '') {
+                        numA = prevNum; // Empty means no change from prevNum
+                    } else if (numAInput === '-1') {
+                        numA = -1; // Explicitly -1 means sold out
+                    } else {
+                        numA = parseInt(numAInput);
+                        if (isNaN(numA)) numA = prevNum;
+                    }
                     startNumForB = numA;
                     row.querySelector('.shift-b-input').placeholder = numA === -1 ? 'SOLD' : numA;
                 }
+                
+                // Now determine numB for calculation
+                // If empty, use startNumForB (no sales); if -1 entered, use -1; otherwise parse
+                let numB;
+                if (numBInput === '') {
+                    numB = startNumForB; // Empty means no change, no sales
+                } else if (numBInput === '-1') {
+                    numB = -1; // Explicitly -1 means sold out
+                } else {
+                    numB = parseInt(numBInput);
+                    if (isNaN(numB)) numB = startNumForB;
+                }
+                
                 const soldB = calculateSoldCount(startNumForB, numB, config.bookSize);
                 const totalB = soldB * config.price;
                 shiftB.totalScratchSales += totalB;
                 row.querySelector('.sold-b-count').textContent = soldB;
                 row.querySelector('.total-b-amount').textContent = `$${totalB.toFixed(2)}`;
-                shiftB.ticketDetails.push({ id, name: config.name, price: config.price, bookSize: config.bookSize, prevNum: startNumForB, currentNum: numB, soldCount: soldB, totalAmount: totalB });
+                // Save -1 for empty inputs when saving, but use actual value for calculation
+                const savedNumB = numBInput === '' ? -1 : numB;
+                shiftB.ticketDetails.push({ id, name: config.name, price: config.price, bookSize: config.bookSize, prevNum: startNumForB, currentNum: savedNumB, soldCount: soldB, totalAmount: totalB });
             }
         });
         
@@ -786,9 +826,52 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- PDF Generation ---
     function generateDailyReportPDF() {
+        // If more than 2 days, show date range selector
+        if (dailyReports.length > 2) {
+            const startDate = dailyReports[0].date;
+            const endDate = dailyReports[dailyReports.length - 1].date;
+            
+            const startInput = prompt(`Select start date (YYYY-MM-DD):\nAvailable range: ${startDate} to ${endDate}`, startDate);
+            if (startInput === null) return; // User cancelled
+            
+            const endInput = prompt(`Select end date (YYYY-MM-DD):\nAvailable range: ${startDate} to ${endDate}`, endDate);
+            if (endInput === null) return; // User cancelled
+            
+            const start = new Date(startInput);
+            const end = new Date(endInput);
+            
+            if (isNaN(start.getTime()) || isNaN(end.getTime())) {
+                alert('Invalid date format. Please use YYYY-MM-DD format.');
+                return;
+            }
+            
+            if (start > end) {
+                alert('Start date must be before or equal to end date.');
+                return;
+            }
+            
+            // Filter reports by date range
+            const filteredReports = dailyReports.filter(report => {
+                const reportDate = new Date(report.date);
+                return reportDate >= start && reportDate <= end;
+            });
+            
+            if (filteredReports.length === 0) {
+                alert('No reports found in the selected date range.');
+                return;
+            }
+            
+            generatePDFForReports(filteredReports);
+        } else {
+            // If 1 or 2 days, generate PDF for all
+            generatePDFForReports(dailyReports);
+        }
+    }
+    
+    function generatePDFForReports(reportsToGenerate) {
         const doc = new jsPDF({ orientation: 'portrait', unit: 'pt', format: 'letter' });
 
-        dailyReports.forEach((day, index) => {
+        reportsToGenerate.forEach((day, index) => {
             if (index > 0) doc.addPage('letter', 'portrait');
             
             const reportDate = new Date(day.date);
@@ -809,14 +892,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
             for(let i=0; i < ticketCount; i++){
                 const tA = day.shiftA.ticketDetails[i], tB = day.shiftB.ticketDetails[i];
-                const shiftACurrent = (tA.isMissing || tA.currentNum === null) ? '' : (tA.currentNum === -1 ? 'SOLD' : tA.currentNum);
+                const shiftACurrent = (tA.isMissing || tA.currentNum === null) ? '' : (tA.currentNum === -1 ? '-1' : tA.currentNum);
                 const shiftASold = (tA.isMissing || tA.currentNum === null) ? '' : tA.soldCount;
                 const shiftATotal = (tA.isMissing || tA.currentNum === null) ? '' : `$${tA.totalAmount.toFixed(2)}`;
-                const shiftBCurrent = (tB.isMissing || tB.currentNum === null) ? '' : (tB.currentNum === -1 ? 'SOLD' : tB.currentNum);
+                const shiftBCurrent = (tB.isMissing || tB.currentNum === null) ? '' : (tB.currentNum === -1 ? '-1' : tB.currentNum);
                 const shiftBSold = (tB.isMissing || tB.currentNum === null) ? '' : tB.soldCount;
                 const shiftBTotal = (tB.isMissing || tB.currentNum === null) ? '' : `$${tB.totalAmount.toFixed(2)}`;
                 body.push([
-                    i+1, tA.name, tA.prevNum === -1 ? 'SOLD' : tA.prevNum,
+                    i+1, tA.name, tA.prevNum === -1 ? '-1' : tA.prevNum,
                     shiftACurrent, shiftASold, `$${tA.price}`, shiftATotal,
                     shiftBCurrent, shiftBSold, shiftBTotal
                 ]);
@@ -1055,8 +1138,8 @@ document.addEventListener('DOMContentLoaded', function() {
             sortedReports.forEach(report => {
                 const tA = report.shiftA.ticketDetails.find(t => t.id === ticket.id);
                 const tB = report.shiftB.ticketDetails.find(t => t.id === ticket.id);
-                const shiftAValue = tA ? (tA.isMissing || tA.currentNum === null ? 'MISSING' : (tA.currentNum === -1 ? 'SOLD' : tA.currentNum)) : '';
-                const shiftBValue = tB ? (tB.isMissing || tB.currentNum === null ? 'MISSING' : (tB.currentNum === -1 ? 'SOLD' : tB.currentNum)) : '';
+                const shiftAValue = tA ? (tA.isMissing || tA.currentNum === null ? 'MISSING' : (tA.currentNum === -1 ? '-1' : tA.currentNum)) : '';
+                const shiftBValue = tB ? (tB.isMissing || tB.currentNum === null ? 'MISSING' : (tB.currentNum === -1 ? '-1' : tB.currentNum)) : '';
                 ticketRow.push(shiftAValue, shiftBValue);
             });
             rows.push(ticketRow.map(escapeCSV).join(','));
